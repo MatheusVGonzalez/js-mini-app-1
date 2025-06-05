@@ -52,6 +52,7 @@ let cards = [
 let firstCard, secondCard;
 let lockBoard = false;
 let score = 0;
+let restartVar = false;
 
 document.querySelector(".score").textContent = score;
 
@@ -142,6 +143,7 @@ function resetBoard() {
 }
 
 function restart() {
+    restartVar = true;
     resetBoard();
     shuffleCards();
     score = 0;
@@ -164,7 +166,7 @@ const levelTimes = {
 const timeInSeconds = levelTimes[level] || 30; 
 
 function startTimer(seconds) {
-  if(restart == true){
+  if(restartVar == true){
   clearInterval(countdown);
   const timerDisplay = document.getElementById("timer");
   const end = Date.now() + seconds * 1000;
@@ -176,6 +178,7 @@ function startTimer(seconds) {
     if (secondsLeft <= 0) {
       clearInterval(countdown);
       timerDisplay.textContent = "Time's up!";
+      restart();
       return;
     }
     updateDisplay(secondsLeft);
