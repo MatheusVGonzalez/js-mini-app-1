@@ -149,3 +149,46 @@ function restart() {
     gridContainer.innerHTML = '';
     generateCards();
 }
+// Jessie's part
+let countdown;
+
+const params = new URLSearchParams(window.location.search);
+const level = params.get("level");
+
+const levelTimes = {
+  easy: 60,
+  medium: 30,
+  hard: 15
+};
+
+const timeInSeconds = levelTimes[level] || 30; 
+
+function startTimer(seconds) {
+  if(restart == true){
+  clearInterval(countdown);
+  const timerDisplay = document.getElementById("timer");
+  const end = Date.now() + seconds * 1000;
+
+  updateDisplay(seconds);
+
+  countdown = setInterval(() => {
+    const secondsLeft = Math.round((end - Date.now()) / 1000);
+    if (secondsLeft <= 0) {
+      clearInterval(countdown);
+      timerDisplay.textContent = "Time's up!";
+      return;
+    }
+    updateDisplay(secondsLeft);
+  }, 1000);
+  }
+  
+}
+
+function updateDisplay(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainderSeconds = seconds % 60;
+  const display = `${minutes}:${remainderSeconds < 10 ? "0" : ""}${remainderSeconds}`;
+  document.getElementById("timer").textContent = display;
+}
+
+startTimer(timeInSeconds);

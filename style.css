@@ -81,3 +81,18 @@ p {
     background-size: cover;
     backface-visibility: hidden;
 }
+nav{
+    text-align: center;
+    margin-top: 95px;
+}
+nav a{
+    color: white;
+    text-decoration: none;
+    list-style: none;
+    font-size: 35px;
+}
+nav li{
+    list-style: none;
+    margin-bottom: 90px;
+    
+}
