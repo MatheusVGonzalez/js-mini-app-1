@@ -120,3 +120,11 @@ nav li{
   box-shadow: 0 0 10px #000;
   z-index: 1000;
 }
+#timer{
+    text-align: center;
+    background-color: white;
+    margin: 30px;
+    width: 100px;
+    color: black;
+    padding: auto;
+}
