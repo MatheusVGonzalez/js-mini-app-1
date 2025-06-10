@@ -57,6 +57,11 @@ p {
     transform: rotateY(180deg);
 }
 
+#timer{
+    font-size: 24px;
+    margin-left: 10px;
+}
+
 .front,
 .back {
     backface-visibility: hidden;
@@ -76,7 +81,7 @@ p {
 }
 
 .card .back {
-    background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='32' height='32' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(240,6.7%,17.6%,1)'/><path d='M37.657 10.343l-4.243 4.243m-2.828 2.828l-4.243 4.243m11.314 0l-4.243-4.243m-2.828-2.828l-4.243-4.243m-20.686 0l-4.243 4.243m-2.828 2.828l-4.243 4.243m11.314 0l-4.243-4.243m-2.828-2.828l-4.243-4.243'  stroke-linecap='square' stroke-width='1' stroke='hsla(47,80.9%,61%,1)' fill='none'/><path d='M16-8v6m0 4v6m8-8h-6m-4 0H8m8 24v6m0 4v6m8-8h-6m-4 0H8'  stroke-linecap='square' stroke-width='1' stroke='hsla(4.1,89.6%,58.4%,1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
+    background-image: url("./assets/cardBack.png");
     background-position: center center;
     background-size: cover;
     backface-visibility: hidden;
@@ -90,9 +95,28 @@ nav a{
     text-decoration: none;
     list-style: none;
     font-size: 35px;
+    border: white 1px solid;
+    padding: 20px;
 }
 nav li{
     list-style: none;
     margin-bottom: 90px;
     
+}
+
+.log-box {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-family: monospace;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #000;
+  z-index: 1000;
 }

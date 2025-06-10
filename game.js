@@ -53,6 +53,9 @@ let firstCard, secondCard;
 let lockBoard = false;
 let score = 0;
 let restartVar = false;
+let audio = new Audio('./assets/click.mp3');
+let correct = new Audio('./assets/correct.mp3');
+let win = new Audio('./assets/win.mp3');
 
 document.querySelector(".score").textContent = score;
 
@@ -98,7 +101,7 @@ function generateCards() {
 function flipCard() {
     if (lockBoard) return;
     if (this === firstCard) return;
-
+    audio.play();
     this.classList.add('flipped');
     
     if (!firstCard) {
@@ -108,12 +111,17 @@ function flipCard() {
     secondCard = this;
 
     checkForMatch();
+    winGame();
 }
 
 function checkForMatch() {
     const isMatch = firstCard.dataset.name === secondCard.dataset.name;
 
     isMatch ? disableCards() : unflipCards();
+    if (isMatch) {
+        correct.play();
+    } 
+
 }
 
 function disableCards() {
@@ -133,7 +141,7 @@ function unflipCards() {
         secondCard.classList.remove('flipped');
         
         resetBoard();
-    }, 1000);
+    }, 500);
 }
 
 function resetBoard() {
@@ -159,8 +167,8 @@ const level = params.get("level");
 
 const levelTimes = {
   easy: 60,
-  medium: 30,
-  hard: 15
+  medium: 35,
+  hard: 20
 };
 
 const timeInSeconds = levelTimes[level] || 30; 
@@ -179,12 +187,13 @@ function startTimer(seconds) {
       clearInterval(countdown);
       timerDisplay.textContent = "Time's up!";
       restart();
+      disablePointer();
+      addGameLogEntry("Lose - " + level + " level");
       return;
     }
     updateDisplay(secondsLeft);
   }, 1000);
   }
-  
 }
 
 function updateDisplay(seconds) {
@@ -195,3 +204,30 @@ function updateDisplay(seconds) {
 }
 
 startTimer(timeInSeconds);
+
+function disablePointer() { //just to disable pointer events on cards - Matheus
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.style.pointerEvents = 'none';
+    });
+}
+
+
+function winGame(){
+    if (score === cards.length / 2) {
+        clearInterval(countdown);
+        addGameLogEntry("Win - "+ level + " level");
+        disablePointer();
+        win.play();
+    }
+}
+
+let logCount = 0;
+
+function addGameLogEntry(message) {
+  logCount++;
+  const logBox = document.getElementById('game-log');
+  const newLog = document.createElement('div');
+  newLog.textContent = `${String(logCount).padStart(2, '0')} - ${message}`;
+  logBox.appendChild(newLog);
+}

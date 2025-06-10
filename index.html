@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select Difficulty</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Memory Cards</h1>
-     <div id="timer">Loading timer...</div>
-    <div class="grid-container"></div>
-    <p>Score: <span class="score"></span></p>
-    <div class="actions">
-        <button onclick="restart(), startTimer(timeInSeconds)">Restart</button>
-    </div>
-    <script src="index.js"></script>
+  <h1>Welcome!</h1>
+
+  <section>
+    <nav>
+      <ul>
+        <li><a href="./game.html?level=easy">Easy (1 min)</a></li>
+        <li><a href="./game.html?level=medium">Medium (30 sec)</a></li>
+        <li><a href="./game.html?level=hard">Hard (15 sec)</a></li>
+      </ul>
+    </nav>
+  </section>
 </body>
 </html>
